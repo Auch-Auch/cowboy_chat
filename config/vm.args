@@ -1,0 +1,6 @@
+-sname cowboy_chat
+
+-setcookie cowboy_chat_cookie
+
++K true
++A30

@@ -1,7 +1,11 @@
-var socket;
+var socket = null;
 
 function add_message(message) {
     $('#messages').append('<p></p>').children().last().text(message);
+}
+
+function add_name(name) {
+    $('#clients').append('<a></a>').children().last().text(name).addClass("item");;
 }
 
 function read_message_input() {
@@ -17,30 +21,50 @@ function connect_to_chat() {
 
     socket = new WebSocket("ws://localhost:8080/ws");
 
-    socket.onopen = function() {
-        add_message("Connected.")
+    socket.onmessage = function(event) {
+        data = JSON.parse(event.data)
+        if ("message" in data) {
+            add_message(data['message']);
+        } else if ("clients" in data) {
+            $(".item").remove();
+            for (client in data["clients"]) {
+                add_name(data["clients"][client]);
+            }
+        }
+        
     };
 
-    socket.onmessage = function(event) {
+    socket.onopen = function(event) {
         add_message(event.data);
     };
 
-    socket.onclose = function() {
-        add_message("Connection closed.");
-    };
 }
 
 function send_message(e) {
     var message = read_message_input();
-    add_message(message);
-    socket.send(message);
+    add_message("you:  " + message);
+    socket.send(JSON.stringify({"message": `${message}`}));
     $('#message').val("");
 }
 
-function send_name(e) {
+function send_name() {
+    
     var name = read_name_input();
-    socket.send(["name", name]);
+    socket.send(JSON.stringify({"name": `${name}`}));
+    socket.send(JSON.stringify({"names": ""}));
+    $('#name_button').hide(function() {
+        $('#chat').show();
+    });
+    socket.send(JSON.stringify({"message": "New user connected"}));
+    add_message("You are connected!");
 }
+
+$(window).on("beforeunload", function() {
+    socket.send(JSON.stringify({"type": "User disconected"}));
+    socket.send(JSON.stringify({"names": ""}));
+    socket.onclose = function () {};
+    socket.close();
+})
 
 $(document).ready(function() {
     connect_to_chat();

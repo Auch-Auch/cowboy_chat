@@ -7,18 +7,43 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="/static/chat.js"></script>
-    
+    <style>
+      #chat{
+      display:none;
+      }
+    </style>
   </head>
   <body>
-    <div class="ui center aligned container">
+    <div id="name_button" class="ui center aligned container">
       <h2 class="ui dividing header">Enter a name</h2>
       <div class="field six wide">
         <div class="ui action input">
-          <input type="text" id="message"></input>
-          <a href="/chat" class="button" id="send-name">Go</a>
+          <input type="text" id="name"></input>
+          <button class="button" id="send-name">Go</button>
         </div>
       </div>
-      <div id="messages"></div>
     </div>
+    <br>
+    <div id="chat" class="ui centered grid">
+      <div class="four wide column">
+        <label>Current in chat: </label>
+        <div id="clients" class="ui vertical fluid tabular menu">
+         
+        </div>
+      </div>
+      <div class="eight wide stretched column">
+        <h2 class="ui dividing header">Chat</h2>
+        <div class="">
+          <div class="ui action input medium">
+            <div class="field six wide">
+            <textarea id="message" rows="2" style="width: 399px; height: 49px;"></textarea>
+            </div>
+            <a class="button" id="send-button">Send</a>
+          </div>
+        </div>
+        <div id="messages"></div>
+      </div>
+    </div>
+        
   </body>
 </html>

@@ -1,3 +1,4 @@
+{"1.2.0",
 [{<<"cowboy">>,
   {git,"git://github.com/ninenines/cowboy.git",
        {ref,"63b17e4edf666d995ec86cdcda17a62ba5ebc423"}},
@@ -8,9 +9,23 @@
   1},
  {<<"jiffy">>,
   {git,"https://github.com/davisp/jiffy.git",
-       {ref,"2f73ba9afd05a0169b84a77d23ecf4524914f609"}},
+       {ref,"6dadc0cd22b06e2b1972ee8aba5708c478418926"}},
   0},
+ {<<"jsx">>,
+  {git,"https://github.com/talentdeficit/jsx.git",
+       {ref,"3074d4865b3385a050badf7828ad31490d860df5"}},
+  0},
+ {<<"katana_code">>,{pkg,<<"katana_code">>,<<"1.0.3">>},1},
  {<<"ranch">>,
   {git,"https://github.com/ninenines/ranch",
        {ref,"3190aef88aea04d6dce8545fe9b4574288903f44"}},
-  1}].
+  1},
+ {<<"rebar3_format">>,{pkg,<<"rebar3_format">>,<<"0.8.2">>},0}]}.
+[
+{pkg_hash,[
+ {<<"katana_code">>, <<"E8FD8ABA6ACED39C52E0E374EF8337C3BA0DCAB2453A3589BE5FC50C1477EDEA">>},
+ {<<"rebar3_format">>, <<"2D64DA61E0B87FCA6C4512ADA6D9CBC2B27ADC9AE6844178561147E7121761BD">>}]},
+{pkg_hash_ext,[
+ {<<"katana_code">>, <<"EAE5159F0C66171224E3F191230B001096CA5063DEF95C60A776CC7A501D3970">>},
+ {<<"rebar3_format">>, <<"CA8FF27638C2169593D1449DACBE8895634193ED3334E906B54FC97F081F5213">>}]}
+].

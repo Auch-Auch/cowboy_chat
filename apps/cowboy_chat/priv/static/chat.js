@@ -16,6 +16,12 @@ function read_name_input() {
     return $('#name').val();
 }
 
+function disconnect() {
+    socket.send(JSON.stringify({"type": "User disconected"}));
+    socket.send(JSON.stringify({"names": ""}));
+    socket.onclose = function () {};
+    socket.close();
+}
 
 function connect_to_chat() {
 
@@ -60,10 +66,11 @@ function send_name() {
 }
 
 $(window).on("beforeunload", function() {
-    socket.send(JSON.stringify({"type": "User disconected"}));
-    socket.send(JSON.stringify({"names": ""}));
-    socket.onclose = function () {};
-    socket.close();
+    disconnect();
+})
+
+$(window).on("onbeforeunload", function() {
+    disconnect();
 })
 
 $(document).ready(function() {
